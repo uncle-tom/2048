@@ -12,30 +12,49 @@ function Grid(){
   var WIDTH_KVADRAT = 100;
   var HEIGHT_KVADRAT =100;
   var PADDING = 25;
-  var COLORS = ["orange", "blue", "gold", "red"]
+  var COLORS = ["orange", "red", "crimson", "brown"]
+
+  this.has_empty_space = function(){
+    for (var i=0; i<4; i++) {
+      for (var j=0; j<4; j++) {
+        if(this.grid[i][j] == 0) {
+          return true;
+        }
+      }
+    }
+    return false;
+  }
 
 	this.generate_kvadrat = function() {
+    if (!this.has_empty_space()) {
+      alert('Game over!');
+      return;
+    } 
 	  var x = parseInt(Math.random() * 4);
 	  var y = parseInt(Math.random() * 4);
-	  	var color = COLORS[parseInt(Math.random() * 2)];
+	  	var color = COLORS[0];
 	  if(this.grid[x][y] == 0) {
 	  	this.grid[x][y] = color;
 	  } else {
-	  	x = parseInt(Math.random() * 4);
-	  	y = parseInt(Math.random() * 4);
-	  	this.grid[x][y] = color;
+	  	this.generate_kvadrat();
 	  }
 	}
 
   this.move_left = function() {
   	for(var i=1; i < 4; i++) {
   		for (var j=0; j<4; j++) {
+        inner_block:
   			if(this.grid[i][j] != 0) {
   				for(var z = i - 1; z > -1; z -= 1) {
   					if(this.grid[z][j] == 0) {
   						this.grid[z][j] = this.grid[z + 1][j];
   						this.grid[z + 1][j] = 0;
-  					}
+  					} else if( this.grid[z][j] == this.grid[z + 1][j]) {
+              this.grid[z + 1][j] = 0;
+              var index = COLORS.indexOf(this.grid[z][j]);
+              this.grid[z][j] = COLORS[index+1];
+              break inner_block;
+            }
   				}
   			}
   		}

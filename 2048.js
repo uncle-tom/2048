@@ -10,20 +10,36 @@ $(document).ready(function() {
     if ( e.keyCode == 37 ) {
       grid.move_left();
   	  grid.draw_grid();
+      setTimeout(function() {
+        grid.generate_kvadrat();
+        grid.draw_grid();
+      }, 500);
     } else if ( e.keyCode == 39 ) {
     	console.log('move_right');
       grid.move_right();
   	  grid.draw_grid();
+      setTimeout(function() {
+        grid.generate_kvadrat();
+        grid.draw_grid();
+      }, 500);
     }
     else if ( e.keyCode == 38 ) {
     	console.log('move_top');
       grid.move_top();
   	  grid.draw_grid();
+      setTimeout(function() {
+        grid.generate_kvadrat();
+        grid.draw_grid();
+      }, 500);
     }
     else if ( e.keyCode == 40 ) {
     	console.log('move_top');
       grid.move_bottom();
   	  grid.draw_grid();
+      setTimeout(function() {
+        grid.generate_kvadrat();
+        grid.draw_grid();
+      }, 500);
     }
   }
 })
