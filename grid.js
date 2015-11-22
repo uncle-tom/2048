@@ -64,12 +64,19 @@ function Grid(){
   this.move_right = function() {
   	for(var i=2; i > -1; i--) {
   		for (var j=0; j<4; j++) {
+        inner_block:
   			if(this.grid[i][j] != 0) {
   				for(var z = i + 1; z < 4; z += 1) {
   					if(this.grid[z][j] == 0) {
   						this.grid[z][j] = this.grid[z-1][j];
   						this.grid[z-1][j] = 0;
   					}
+            else if( this.grid[z][j] == this.grid[z-1][j]) {
+              this.grid[z-1][j] = 0;
+              var index = COLORS.indexOf(this.grid[z][j]);
+              this.grid[z][j] = COLORS[index+1];
+              break inner_block;
+            }
   				}
   			}
   		}
@@ -79,12 +86,19 @@ function Grid(){
   this.move_top = function() {
   	for(var i=0; i<4; i++) {
   		for (var j=1; j<4; j++) {
+        inner_block:
   			if(this.grid[i][j] != 0) {
   				for(var z = j - 1; z > -1; z -= 1) {
   					if(this.grid[i][z] == 0) {
   						this.grid[i][z] = this.grid[i][z + 1];
   						this.grid[i][z + 1] = 0;
   					}
+            else if( this.grid[i][z] == this.grid[i][z + 1]) {
+              this.grid[i][z + 1] = 0;
+              var index = COLORS.indexOf(this.grid[i][z]);
+              this.grid[i][z] = COLORS[index+1];
+              break inner_block;
+            }
   				}
   			}
   		}
@@ -94,12 +108,19 @@ function Grid(){
   this.move_bottom = function() {
   	for(var i=0; i<4; i++) {
   		for (var j=2; j > -1; j--) {
+        inner_block:
   			if(this.grid[i][j] != 0) {
   				for(var z = j + 1; z < 4; z += 1) {
   					if(this.grid[i][z] == 0) {
   						this.grid[i][z] = this.grid[i][z - 1];
   						this.grid[i][z - 1] = 0;
   					}
+            else if( this.grid[i][z] == this.grid[i][z - 1]) {
+              this.grid[i][z - 1] = 0;
+              var index = COLORS.indexOf(this.grid[i][z]);
+              this.grid[i][z] = COLORS[index+1];
+              break inner_block;
+            }
   				}
   			}
   		}
