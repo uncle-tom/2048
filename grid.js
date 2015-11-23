@@ -12,7 +12,7 @@ function Grid(){
   var WIDTH_KVADRAT = 100;
   var HEIGHT_KVADRAT =100;
   var PADDING = 25;
-  var COLORS = ["orange", "red", "crimson", "brown"]
+  var COLORS = ["orange", "red", "crimson", "brown", "black"];
 
   this.has_empty_space = function(){
     for (var i=0; i<4; i++) {
